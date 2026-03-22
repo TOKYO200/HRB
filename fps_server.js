@@ -110,7 +110,7 @@ function botTick(b,dt){
   if(!b.alive)return;
   const now=Date.now();
   if(now>b.bThink){
-    b.bThink=now+500+Math.random()*500;
+    b.bThink=now+1200+Math.random()*800;  // يفكر كل ~2 ثانية
     const targets=Object.values(players).filter(p=>p.alive&&p.id!==b.id);
     b.bTarget=targets.length?targets[Math.floor(Math.random()*targets.length)]:null;
     if(!b.bTarget)b.bAngle=Math.random()*Math.PI*2;
@@ -123,8 +123,8 @@ function botTick(b,dt){
     else b.bAngle+=(.5-Math.random())*.4;
     if(dist<20&&now>b.bFire){b.bFire=now+800+Math.random()*600;fire(b);}
   }
-  let nx=b.x+Math.sin(b.bAngle)*P_SPD*.5*dt;
-  let nz=b.z+Math.cos(b.bAngle)*P_SPD*.5*dt;
+  let nx=b.x+Math.sin(b.bAngle)*P_SPD*.35*dt;  // بوت بطيء طبيعي
+  let nz=b.z+Math.cos(b.bAngle)*P_SPD*.35*dt;
   nx=clamp(nx,-MAP+P_R,MAP-P_R);nz=clamp(nz,-MAP+P_R,MAP-P_R);
   if(!hitWall(nx,b.z))b.x=nx;
   if(!hitWall(b.x,nz))b.z=nz;
