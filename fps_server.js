@@ -57,8 +57,7 @@ const COLORS = [
   '#88ff44','#4488ff','#ff8844','#44ffff','#ffaa00',
   '#00ffaa','#aa00ff','#ff00aa','#00aaff','#aaff00',
 ];
-const BOT_NAMES = ['🤖 Alpha','🤖 Nexus','🤖 Reaper','🤖 Ghost','🤖 Viper',
-  '🤖 Storm','🤖 Blaze','🤖 Nova','🤖 Zero','🤖 Apex'];
+const BOT_NAMES = ['سالم','خالد','محمد','يوسف','أحمد','عمر','علي','حسن','كريم','ماجد'];
 
 let players={}, bullets=[], clients={}, nid=1;
 
@@ -122,10 +121,10 @@ function botTick(b,dt){
     b.rotY=Math.atan2(dx,dz);
     if(dist>6)b.bAngle=b.rotY;
     else b.bAngle+=(.5-Math.random())*.4;
-    if(dist<25&&now>b.bFire){b.bFire=now+350+Math.random()*350;fire(b);}
+    if(dist<20&&now>b.bFire){b.bFire=now+800+Math.random()*600;fire(b);}
   }
-  let nx=b.x+Math.sin(b.bAngle)*P_SPD*dt;
-  let nz=b.z+Math.cos(b.bAngle)*P_SPD*dt;
+  let nx=b.x+Math.sin(b.bAngle)*P_SPD*.5*dt;
+  let nz=b.z+Math.cos(b.bAngle)*P_SPD*.5*dt;
   nx=clamp(nx,-MAP+P_R,MAP-P_R);nz=clamp(nz,-MAP+P_R,MAP-P_R);
   if(!hitWall(nx,b.z))b.x=nx;
   if(!hitWall(b.x,nz))b.z=nz;
